@@ -20,9 +20,11 @@ router.get('/login',(req,res) => {
 
 router.post('/register', (req,res,next) => {
     const {errors, isValid } = validateSignUp(req.body);
-    if(!isValid) {
-        return res.status(400).json(errors);
-    }
+    // if(!isValid) {
+    //     var err = new Error('All fields are mandatory');
+    //    err.status = 401;
+    //    return next(err);
+    // }
 
     user.findOne({
         email: req.body.email
@@ -42,7 +44,7 @@ router.post('/register', (req,res,next) => {
                     newUserRegistration.password = hash;
                     newUserRegistration
                     .save()
-                    .then(user => res.json(user))
+                    .then(user => res.send('<h1> User registration is successful</h1>'))
                     .catch(err => console.log(err));
                 });
             });
@@ -96,5 +98,10 @@ router.post('/login',(req,res,next) => {
         });
     });
 });
+
+router.get('/logout',(req,res) => {
+    req.logout();
+    res.redirect('/');
+})
 
 module.exports = router;
