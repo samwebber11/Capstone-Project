@@ -1,0 +1,177 @@
+textarea {
+  overflow: auto;
+}
+
+@media (max-width: 527 px) {
+  .img1 {
+    height: 20%;
+    width: 40%;
+  }
+}
+
+body {
+  overflow-x: hidden;
+}
+.img1 {
+  height: 30%;
+  width: 60%;
+}
+#img2 {
+  height: 175% !important;
+  width: 175% !important;
+}
+.navbar {
+  opacity: 0.8;
+  /* border-bottom: 3px solid; */
+  /* background: #ffedc6; */
+  color: #913535;
+  z-index: 1;
+}
+
+.nav-link:hover {
+  color: yellow !important;
+}
+.navbar .nav-link {
+  font-size: 1rem;
+  text-transform: uppercase;
+  padding-left: 1rem !important;
+  padding-right: 1rem !important;
+}
+.fas {
+  color: #3694a8;
+}
+.navbar .nav-item.active {
+  border-left: #fff 3px solid;
+}
+
+.main-screen {
+  min-height: 100vh;
+  min-width: 100vw;
+}
+.dark-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  /* z-index: -1; */
+}
+.hero {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  /* height: 100vh; */
+}
+video {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  z-index: -1;
+}
+#myCarousel {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  /* margin: auto auto auto auto; */
+  /* min-height: 200px; */
+  /* background: url("../img/black.jpg");
+    background-attachment: fixed;
+    background-repeat: repeat-y;
+    background-position: 0 -300px; */
+  text-align: center;
+  color: #fff;
+}
+
+/* .slider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to left, #ba7453, #d1a984);
+  z-index: -2;
+}
+
+.central-block {
+  position: relative;
+  top: 0;
+  left: 0;
+  background: url(/img/white-wood-white-picture-ppt.jpeg);
+  background-repeat: repeat-y;
+   left: 100px; 
+   width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+
+  z-index: -1; 
+ }
+.white-overlay {
+  position: absolute;
+  top: 750px;
+  left: 0;
+  width: 100vw;
+  height: 500px;
+  object-fit: cover;
+  background: rgba(253, 247, 210, 0.15);
+  z-index: 0;
+}
+
+.centralimage {
+  height: 60%;
+  width: 80%;
+}
+.centralimage img {
+  position: absolute;
+  top: 775px;
+  margin: auto auto auto auto; 
+  left: 10%;
+  width: 80vw;
+  height: 60vh;
+  object-fit: cover;
+}  */
+#contact {
+  position: relative;
+  top: 400px;
+  min-height: 200px;
+  background: url("../img/black.jpg");
+  background-attachment: fixed;
+  background-repeat: repeat;
+  background-position: 0 -300px;
+  text-align: center;
+  color: #fff;
+}
+#main-footer {
+  position: relative;
+  top: 400px;
+  background: #913535;
+  color: #fff;
+}
+
+#info {
+  position: relative;
+  top: 50px;
+  z-index: 5;
+}
+#info span {
+  width: 100%;
+  background: red;
+  display: block;
+  height: 5px;
+  margin-top: 20px;
+}
+
+canvas {
+  width: 752px !important;
+  height: 400px !important;
+}
+.button {
+  position: absolute;
+  top: 550px;
+  left: 50%;
+  z-index: 8;
+}
