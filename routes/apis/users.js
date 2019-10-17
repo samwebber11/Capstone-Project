@@ -3,13 +3,22 @@ const router = express.Router();
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const keys = require('../../config/db');
+const path = require('path');
 
 const validateSignUp = require('../../validation/register');
 const validateLogin = require('../../validation/login');
 
 const user = require('../../models/user');
 
-router.post('/signup', (req,res) => {
+router.get('/',(req,res) => {
+    return res.sendFile(path.join(__dirname + '/index.html'));
+});
+
+router.get('/login',(req,res) => {
+    return res.sendFile(path.join(__dirname + '/login.html'));
+});
+
+router.post('/register', (req,res,next) => {
     const {errors, isValid } = validateSignUp(req.body);
     if(!isValid) {
         return res.status(400).json(errors);
@@ -22,9 +31,7 @@ router.post('/signup', (req,res) => {
             return res.status(400).json({ email:"Email Already exists"});
         } else{
             const newUserRegistration = new user({
-                firstName: req.body.firstName,
-                lastName: req.body.lastName,
-                userName : req.body.userName,
+                name : req.body.name,
                 email: req.body.email,
                 password: req.body.password,
             });
@@ -44,11 +51,13 @@ router.post('/signup', (req,res) => {
 });
 
 
-router.post('/login',(req,res) => {
-    const {erros, isValid } = validateLogin(req.body);
+router.post('/login',(req,res,next) => {
+    const {errors, isValid } = validateLogin(req.body);
 
     if(!isValid) {
-        return res.status(400).json(errors);
+       var err = new Error('All fields are mandatory');
+       err.status = 401;
+       return next(err);
     }
 
     const email = req.body.email;
@@ -56,7 +65,9 @@ router.post('/login',(req,res) => {
 
     user.findOne({email}).then(userObject => {
         if(!userObject) {
-            return res.status(404).json({emailnotfound: "Email not Found"});
+            var err1 = new Error('Email is not found');
+            err1.status = 401;
+            return next(err1);
         }
 
         bcrypt.compare(password, userObject.password).then(isMatch => {
@@ -73,17 +84,14 @@ router.post('/login',(req,res) => {
                         expiresIn: 31556926
                     },
                     (err,token) => {
-                        res.json({
-                            message: " User login successfull",
-                            success: true,
-                            token: token
-                        });
+                        console.log('Login SuccessFull')
+                        return res.send('<h1>Login Successfull</h1>');
                     }
                 );
             } else {
-                return res
-                .status(400)
-                .json({ passwordincorrect: "Password Incorrect "});
+                var err1 = new Error('Password Incorrect');
+                err1.status=400;
+                return next(err1);
             }
         });
     });

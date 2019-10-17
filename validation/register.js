@@ -4,25 +4,15 @@ const isEmpty = require("is-empty");
 const validationFunction  = (data) => {
     let errors = {};
 
-    data.userName = !isEmpty(data.userName) ? data.userName: "";
-    data.firstName = !isEmpty(data.firstName) ? data.firstName: "";
-    data.lastName = !isEmpty(data.lastName) ? data.lastName : ""; 
+    data.name = !isEmpty(data.name) ? data.name: "";
     data.email = !isEmpty(data.email) ? data.email: "";
     data.password = !isEmpty(data.password) ? data.password : "";
     data.confirmPasswd = !isEmpty(data.confirmPasswd) ? data.confirmPasswd : "";
 
-    if(Validator.isEmpty(data.userName)) {
-        errors.userName = "UserName is required";
+    if(Validator.isEmpty(data.name)) {
+        errors.name = "UserName is required";
     }
     
-    if(Validator.isEmpty(data.firstName)) {
-        errors.firstName = "FirstName is required";
-    }
-    
-    if(Validator.isEmpty(data.lastName)) {
-        errors.lastName = "LastName is required";
-    }
-
     if(Validator.isEmpty(data.email))
     {
         errors.email = "Email field is required";
